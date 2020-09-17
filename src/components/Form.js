@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import QrCode from "./QrCode";
 import { Button, Typography, TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
@@ -33,69 +33,60 @@ const styles = (theme) => ({
   },
 });
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      urlToConvert: " ",
-      convertion: false,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClear = this.handleClear.bind(this);
+const Form = ({classes}) => {
+  const [urlToConvert, setUrl] = useState ("")
+  const [convertion, setConvertion] = useState (false)
+
+  const handleChange = (e) => {
+    setUrl(e.target.value);
+  }
+  const handleClick = (e) => {
+    setConvertion(true);
+  }
+  const handleClear = (e) => {
+    setUrl("")
+    setConvertion(false)
   }
 
-  handleChange(e) {
-    this.setState({ urlToConvert: e.target.value });
-  }
-  handleClick(e) {
-    this.setState({ convertion: true });
-  }
-  handleClear(e) {
-    this.setState({urlToConvert: "", convertion: false})
-  }
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.root}>
-      <Typography variant="h1" className={classes.title}>QR code generator</Typography>
-        <TextField
-          label="Entrez une URL"
-          variant="outlined"
-          color="secondary"
-          className={classes.urlInput}
-          id="urlToConvert"
-          type="text"
-          value={this.state.urlToConvert}
-          onChange={this.handleChange}
-        />
-        <Button
-          variant="contained"
-          className={classes.generateButton}
-          color="primary"
-          onClick={this.handleClick}
-        >
-          Générez le QR code
-        </Button>
-        {this.state.convertion ? (
-          <div className={classes.homeScreen}>
-            <QrCode url={this.state.urlToConvert} />
-            <Button
-              variant="outlined"
-              className={classes.clearButton}
-              onClick={this.handleClear}
-            >
-              Clear
-            </Button>
-          </div>
-        ) : (
-          <div className={classes.homeScreen}>
-            <img className={classes.logo} alt="logo" src={LOGO} />
-          </div>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+    <Typography variant="h1" className={classes.title}>QR code generator</Typography>
+      <TextField
+        label="Entrez une URL"
+        variant="outlined"
+        color="secondary"
+        className={classes.urlInput}
+        id="urlToConvert"
+        type="text"
+        value={urlToConvert}
+        onChange={handleChange}
+      />
+      <Button
+        variant="contained"
+        className={classes.generateButton}
+        color="primary"
+        onClick={handleClick}
+      >
+        Générez le QR code
+      </Button>
+      { convertion ? (
+        <div className={classes.homeScreen}>
+          <QrCode url={urlToConvert} />
+          <Button
+            variant="outlined"
+            className={classes.clearButton}
+            onClick={handleClear}
+          >
+            Clear
+          </Button>
+        </div>
+      ) : (
+        <div className={classes.homeScreen}>
+          <img className={classes.logo} alt="logo" src={LOGO} />
+        </div>
+      )}
+    </div>
+  )
 }
 
 export default withStyles(styles)(Form);

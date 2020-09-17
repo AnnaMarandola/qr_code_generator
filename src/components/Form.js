@@ -11,13 +11,13 @@ const styles = (theme) => ({
     width: "80%",
     height: "100%",
     alignItems: "center",
-    marginTop: "5rem",
+    marginTop: "3rem",
   },
   urlInput: {
     marginBottom: "3rem",
   },
   generateButton: {
-    marginBottom: "3rem",
+    marginBottom: "2rem",
     backgroundColor: theme.palette.primary.red 
   },
   title: {
@@ -26,6 +26,12 @@ const styles = (theme) => ({
   homeScreen: {
     display: "flex",
     justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  clearButton: {
+    marginTop: "2rem",
+    width: "5rem", 
   },
   logo: {
     width: "50%",
@@ -73,8 +79,9 @@ const Form = ({classes}) => {
         <div className={classes.homeScreen}>
           <QrCode url={urlToConvert} />
           <Button
-            variant="outlined"
+            variant="contained"
             className={classes.clearButton}
+            color="primary"
             onClick={handleClear}
           >
             Clear

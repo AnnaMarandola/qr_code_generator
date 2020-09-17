@@ -10,7 +10,7 @@ const options = {
   },
 };
 
-function QrCode(props) {
+const QrCode = (props) => {
   const qrCode = useQrCode(`${props.url}`, options);
   return (
     <div

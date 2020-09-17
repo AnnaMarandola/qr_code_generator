@@ -11,7 +11,7 @@ const options = {
 };
 
 function QrCode(props) {
-  const qrCode = useQrCode( `${props.url}`, options);
+  const qrCode = useQrCode(`${props.url}`, options);
   return (
     <div
       style = {{

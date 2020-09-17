@@ -18,20 +18,18 @@ const styles = (theme) => ({
   },
   generateButton: {
     marginBottom: "3rem",
+    backgroundColor: theme.palette.primary.red 
   },
   title: {
     marginBottom: "3rem",
-    fontSize: "1.8rem",
-    fontWeight: "600",
-    
   },
   homeScreen: {
-    width: "100%",
+    display: "flex",
+    justifyContent: "center",
   },
   logo: {
-    width: "55%",
+    width: "50%",
     marginTop: "8rem",
-    marginLeft: "4.2rem",
   },
 });
 
@@ -60,7 +58,7 @@ class Form extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-      <Typography className={classes.title}>QR code generator</Typography>
+      <Typography variant="h1" className={classes.title}>QR code generator</Typography>
         <TextField
           label="Entrez une URL"
           variant="outlined"

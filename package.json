@@ -5,14 +5,17 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/styles": "^4.10.0",
+    "@react-pdf/renderer": "^1.6.11",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "qrcode.react": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-qrcode-hook": "^1.1.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-to-pdf": "0.0.13"
   },
   "scripts": {
     "start": "react-scripts start",

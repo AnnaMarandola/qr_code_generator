@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import QrCode from "./QrCode";
 import { Button, Typography, TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
-import LOGO from "../assets/LogoProject.png";
+import PDF from "./PDF";
 
 const styles = (theme) => ({
   root: {
@@ -18,7 +17,8 @@ const styles = (theme) => ({
   },
   generateButton: {
     marginBottom: "2rem",
-    backgroundColor: theme.palette.primary.red 
+    backgroundColor: theme.palette.primary.red,
+    color: theme.palette.primary.whiteish,
   },
   title: {
     marginBottom: "3rem",
@@ -27,11 +27,11 @@ const styles = (theme) => ({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   clearButton: {
     marginTop: "2rem",
-    width: "5rem", 
+    width: "5rem",
   },
   logo: {
     width: "50%",
@@ -39,61 +39,54 @@ const styles = (theme) => ({
   },
 });
 
-const Form = ({classes}) => {
-  const [urlToConvert, setUrl] = useState ("")
-  const [convertion, setConvertion] = useState (false)
+const Form = ({ classes }) => {
+  const [urlToConvert, setUrl] = useState("");
+  const [pdf, setPdf] = useState(false);
 
   const handleChange = (e) => {
     setUrl(e.target.value);
-  }
-  const handleClick = (e) => {
-    setConvertion(true);
-  }
-  const handleClear = (e) => {
-    setUrl("")
-    setConvertion(false)
-  }
+  };
+  const handleClear = () => {
+    setPdf(false);
+  };
+  const handlePdf = () => {
+    setPdf(true);
+  };
 
   return (
     <div className={classes.root}>
-    <Typography variant="h1" className={classes.title}>QR code generator</Typography>
-      <TextField
-        label="Entrez une URL"
-        variant="outlined"
-        color="secondary"
-        className={classes.urlInput}
-        id="urlToConvert"
-        type="text"
-        value={urlToConvert}
-        onChange={handleChange}
-      />
-      <Button
-        variant="contained"
-        className={classes.generateButton}
-        color="primary"
-        onClick={handleClick}
-      >
-        Générez le QR code
-      </Button>
-      { convertion ? (
-        <div className={classes.homeScreen}>
-          <QrCode url={urlToConvert} />
+      {!pdf ? 
+        <div className={classes.root}>
+          <Typography variant="h1" className={classes.title}>
+            QR code generator
+          </Typography>
+          <TextField
+            label="Entrez une URL"
+            variant="outlined"
+            color="secondary"
+            className={classes.urlInput}
+            id="urlToConvert"
+            type="text"
+            value={urlToConvert}
+            onChange={handleChange}
+          />
           <Button
             variant="contained"
             className={classes.clearButton}
             color="primary"
-            onClick={handleClear}
+            onClick={handlePdf}
           >
-            Clear
+            générer le pdf
           </Button>
         </div>
-      ) : (
-        <div className={classes.homeScreen}>
-          <img className={classes.logo} alt="logo" src={LOGO} />
+      :
+        <div>
+          <Button onClick={handleClear}>Retour</Button>
+          <PDF />
         </div>
-      )}
+      }
     </div>
-  )
-}
+  );
+};
 
 export default withStyles(styles)(Form);

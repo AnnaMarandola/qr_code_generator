@@ -1,7 +1,6 @@
 import React from "react";
 import useQrCode from "react-qrcode-hook";
 import { makeStyles } from "@material-ui/styles";
-import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -36,9 +35,6 @@ const QrCode = (props) => {
   return (
     <div className={classes.root}>
         <img alt="qr code" src={qrCode} />
-      <Button variant="contained" href={qrCode} download="qrcode" className={classes.download}>
-        Download
-      </Button>
     </div>
   );
 };
